@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import MovieCard from './MovieCard';
+import MovieCard from './components/MovieCard';
 import {api_url, my_key} from './config';
-
+import { MyMovieContainer } from './components/MovieCard.style';
 import './App.css';
 
 function App() {
@@ -13,13 +13,13 @@ function App() {
     .then(response => {return response.json()})
     .then(responseData => {setMovieDatas(responseData.results);})
   },[]); 
-  
+
   return (
-    <div className="movieContainer" >
+    <MyMovieContainer>
       {movieDatas && movieDatas.map((movie, index) => {
         return <MovieCard key={index} movieData={movie} />
       })}
-    </div>
+    </MyMovieContainer>
   );
 }
 
