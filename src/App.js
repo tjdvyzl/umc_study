@@ -1,25 +1,25 @@
-import React, {useState, useEffect} from 'react';
-import MovieCard from './components/MovieCard';
-import {api_url, my_key} from './config';
-import { MyMovieContainer } from './components/MovieCard.style';
-import './App.css';
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Celebrity from "./pages/Celebrity";
+import Home from "./pages/Home";
+import Movies from "./pages/Movies";
+import NotFound from "./pages/NotFound";
+import TV from "./pages/TV";
+import Header from "./components/Header";
+  
 function App() {
-  const [movieDatas, setMovieDatas] = useState([]);
-  useEffect(() => {
-    const endpoint = `${api_url}movie/popular?api_key=${my_key}&language=en-US&page=1`;
-
-    fetch(endpoint)
-    .then(response => {return response.json()})
-    .then(responseData => {setMovieDatas(responseData.results);})
-  },[]); 
-
   return (
-    <MyMovieContainer>
-      {movieDatas && movieDatas.map((movie, index) => {
-        return <MovieCard key={index} movieData={movie} />
-      })}
-    </MyMovieContainer>
+    <div className="root-wrap">
+      <BrowserRouter>
+        <Header></Header>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/celebrity" element={<Celebrity/>} />
+          <Route path="/movies" element={<Movies/>} />
+          <Route path="/notFound" element={<NotFound/>} />
+          <Route path="/tv" element={<TV/>} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -26,7 +26,7 @@ const StyledMovieCard = styled.div`
     height:400px;
     &:hover {
         ${StyledMovieCardOverview} {
-            display: inline-block;
+            display: block;
         }
         ${StyledMovieImg} {
             opacity: 0.5;
