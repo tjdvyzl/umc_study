@@ -1,14 +1,30 @@
-import React from 'react';
-import { MyMovieCard, MyMovieImg, MyMovieCardOverview } from './MovieCard.style';
-import {image_base_url} from '../config';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  MyMovieCard,
+  MyMovieImg,
+  MyMovieCardOverview,
+} from "./MovieCard.style";
+import { image_base_url } from "../config";
 
-const MovieCard = (movieData) => {
-    return (
-        <MyMovieCard>
-            <MyMovieCardOverview>{movieData.movieData.overview}</MyMovieCardOverview>
-            <MyMovieImg imgUrl={`${image_base_url}w400${movieData.movieData.backdrop_path}`} />
-        </MyMovieCard>
-    )
-}
+const MovieCard = (props) => {
+  const navigate = useNavigate();
+  const onClickHandler = () => {
+    navigate(`./detailMoviePage/${props.movieData.id}`, {
+      state: {
+        movieData: props.movieData,
+      },
+    });
+  };
+
+  return (
+    <MyMovieCard onClickHandler={onClickHandler}>
+      <MyMovieCardOverview>{props.movieData.overview}</MyMovieCardOverview>
+      <MyMovieImg
+        imgurl={`${image_base_url}w400${props.movieData.backdrop_path}`}
+      />
+    </MyMovieCard>
+  );
+};
 
 export default MovieCard;
