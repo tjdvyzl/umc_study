@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import DetailMoviePage from "./pages/DetailMoviePage";
 import NotFoundPage from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
+import Weather from "./Weather";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           />
           <Route path="/*" element={<NotFoundPage />} />
           <Route path="/loginPage" element={<LoginPage />} />
+          <Route path="weather" element={<Weather />} />
         </Routes>
       </BrowserRouter>
     </div>
