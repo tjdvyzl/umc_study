@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { login } from "../redux/user/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [id, setId] = useState("");
@@ -9,6 +10,8 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState("");
+
+  const navigate = useNavigate();
 
   const onChangeIdHandler = (e) => {
     setId(e.currentTarget.value);
@@ -43,9 +46,12 @@ export default function LoginPage() {
         if (res.data.code === 402) {
           setMsg("pw is not incorrect");
         }
-        if (res.data.code === 200) {
-          dispatch(login({ id: id, pw: pw }));
+        if (res.data.code === 2000) {
+          dispatch(
+            login({ id: id, pw: pw, accesstoken: res.data.AccessToken })
+          );
           setMsg("");
+          navigate("/");
         }
         setIsLoading(true);
       })

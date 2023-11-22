@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import cookie from "react-cookies";
 
 /* Reducer */
 
 /*
-slice가 뭐야?
+slice란?
 Redux Toolkit을 사용하면 
 리듀서, 액션타입, 액션 생성함수, 초기상태를 하나의 함수로 편하게 선언 할 수 있다. 
 이 라이브러리에선 이 4가지를 통틀어서 slice 라고 부른다.
 */
 
 /*
-createSlice가 뭐야
+createSlice란?
 선언한 slice의 name에 따라 액션 생성자,타입,리듀서를 자동으로 생성해준다. 
 생성된 액션 타입을 가진 액션이 디스패치되면 리듀서가 실행된다. 
 즉 리듀서가 액션의 타입에 따라 변화를 일으키는 함수다.
@@ -31,17 +32,19 @@ export const userSlice = createSlice({
   initialState: {
     id: "",
     pw: "",
-    isLogged: false,
+    accesstoken: "",
   },
   reducers: {
     login: (state, action) => {
       state.id = action.payload.id;
       state.pw = action.payload.pw;
-      state.isLogged = true;
+      window.localStorage.setItem("token", state.accesstoken);
+      window.localStorage.setItem("id", state.id);
     },
     logout: (state) => {
       state.user = null;
-      // state.isLogged = false;
+      window.localStorage.removeItem("token");
+      window.localStorage.removeItem("id");
     },
   },
 });

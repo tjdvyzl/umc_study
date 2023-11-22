@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { MyLoginButton } from "./LoginControl.style";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../redux/user/userSlice";
 
 export default function LoginControl() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = window.localStorage.getItem("id");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginBtnHandler = () => {
-    setIsLoggedIn(!isLoggedIn);
-    navigate("/loginPage");
+    if (!isLoggedIn) {
+      navigate("/loginPage");
+    } else {
+      dispatch(logout());
+      navigate("/");
+    }
   };
 
   return (

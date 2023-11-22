@@ -50,6 +50,9 @@ export default function Header() {
           <a href="/celebrity">인물</a>
         </li>
         <li>
+          <a href="/weather">날씨</a>
+        </li>
+        <li>
           <LoginControl></LoginControl>
         </li>
       </ul>

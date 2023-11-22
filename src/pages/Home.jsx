@@ -1,8 +1,10 @@
-import React from 'react'
-import AdPage from '../components/AdPage'
+import React from "react";
+import AdPage from "../components/AdPage";
 
 export default function Home() {
   return (
-    <div><AdPage></AdPage></div>
-  )
+    <div>
+      <AdPage></AdPage>
+    </div>
+  );
 }
