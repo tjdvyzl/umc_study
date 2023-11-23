@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./redux/counter/counterSlice";
 import userReducer from "./redux/user/userSlice";
 
 /*
@@ -17,7 +16,6 @@ combineReducers 의 첫번째 인자에 객체 형태로 원하는 reducer 를 �
 */
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
   user: userReducer,
 });
 
